@@ -1,0 +1,19 @@
+Package: cxlAnalyze
+Type: Package
+Title: Reads, parses, and analyzes CXL concept map files
+Version: 0.1.0
+Author: Daniel A. Parker
+Maintainer: Daniel A. Parker <danielallenparker@outlook.com>
+Description: The cxlAnalyze package transforms CXL files into data objects that
+    can be manipulated. It also provides a set of operations for concept map
+    research.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    xml2,
+    dplyr,
+    tibble,
+    methods,
+    purrr
+RoxygenNote: 6.1.0
