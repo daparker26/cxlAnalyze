@@ -2,7 +2,7 @@
 #' @importFrom methods new
 
 # Import S3 class from xml2 package
-setOldClass(c("xml_node", "xml_document"))
+setOldClass(c("xml_document"))
 
 #' Cxl class
 #'
@@ -48,6 +48,8 @@ Cxl <-
                               concepts <- .element_attr_df(2,1, doc)
                               concept_viz <- .element_attr_df(2, 4, doc)
                               concepts <- merge(concepts, concept_viz)
+                              concepts[,3:6] <- sapply(concepts[,3:6], as.integer)
+                              as.data.frame(concepts)
                           },
                           get_connections = function() {
                             "Returns CXL connections and phrases in a dataframe"
@@ -68,8 +70,9 @@ Cxl <-
                                             "arrowhead" = "arrowhead.x") %>%
                               tibble::rowid_to_column("id") %>%
                               dplyr::select(-c("from-pos.y", "to-pos.y", "arrowhead.y")) %>%
-                              # Reorder columns
-                              dplyr::select(id, "phrase_id", label, "to_concept", "from_concept", dplyr::everything())
+                              # Reorder and format columns
+                              dplyr::select(id, "phrase_id", label, "to_concept", "from_concept", dplyr::everything()) %>%
+                              dplyr::mutate(dplyr::across(6:9, as.numeric))
                           }
                           )
   )

@@ -26,6 +26,6 @@
 #' @param obj Object
 #'
 #' @return Boolean
-.check_cxl <- function(obj) {
-  if (class(obj) != "Cxl") stop("Argument must be object of class 'Cxl'")
+.is_cxl_object <- function(obj) {
+  if (class(obj) == "Cxl") TRUE else FALSE
 }
